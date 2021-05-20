@@ -1,0 +1,3 @@
+include ':mdi_drawable_demo'
+include ':library'
+rootProject.name = "mdi_drawable"
