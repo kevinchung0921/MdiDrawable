@@ -1,24 +1,34 @@
 package com.kevinchung.mdi_drawable_demo
 
+import android.graphics.Color
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.kevinchung.mdi_drawable.DrawableConfig
+import com.kevinchung.mdi_drawable.MdiDrawableBuilder
+import kotlinx.android.synthetic.main.activity_main.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
+
 
 class MainActivity : AppCompatActivity() {
+
+    val drawableList = ArrayList<DrawableConfig>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+        EventBus.getDefault().register(this)
+
+        setFab()
+        setRecyclerView()
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -35,4 +45,61 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+
+    private fun setFab() {
+        fab.setImageDrawable(MdiDrawableBuilder(this)
+            .stringId(R.string.mdi_plus)
+            .create())
+
+        fab.setOnClickListener {
+            AddDialog(this).show()
+        }
+    }
+
+    private fun setRecyclerView() {
+
+        drawableList.add(
+                DrawableConfig(
+                        stringId = R.string.mdi_star,
+                        size = 100,
+                        iconColor = Color.DKGRAY
+                )
+        )
+
+        drawableList.add(
+                DrawableConfig(
+                        stringId = R.string.mdi_monitor,
+                        size = 60,
+                        iconColor = Color.LTGRAY
+                )
+        )
+
+        drawableList.add(
+                DrawableConfig(
+                        stringId = R.string.mdi_account,
+                        size = 90,
+                        iconColor = Color.BLUE
+                )
+        )
+
+        drawableList.add(
+                DrawableConfig(
+                        stringId = R.string.mdi_cash,
+                        size = 240,
+                        iconColor = Color.GREEN
+                )
+        )
+
+        rvDrawables.layoutManager = LinearLayoutManager(this)
+        val adapter = DrawableAdapter(this, drawableList)
+        rvDrawables.adapter = adapter
+    }
+
+    @Subscribe(threadMode=ThreadMode.MAIN)
+    fun onAddDrawable(config:DrawableConfig) {
+        drawableList.add(0, config)
+        rvDrawables.adapter?.notifyItemInserted(0)
+    }
+
 }

@@ -8,113 +8,130 @@ import android.graphics.Typeface
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.TextView
 
-class MdiDrawableBuilder {
+class MdiDrawableBuilder(private val context:Context) {
 
-    companion object {
-
-        private var context: Context? = null
-        private var stringId: Int = R.string.mdi_android
-        private var backgroundColor: Int = Color.TRANSPARENT
-        private var foregroundColor: Int = Color.BLACK
-        private var cornerRadius: Int = 0
-        private var size: Int = 64
-        private var padding: Int = 0
-        private var enableBackground = false
-        private var enableGradient = false
-        private var gradientStartColor = Color.LTGRAY
-        private var gradientEndColor = Color.DKGRAY
-        private var gradientOrientation = GradientDrawable.Orientation.TOP_BOTTOM
+    var config = DrawableConfig()
 
 
-        fun withContext(context: Context) = apply { this.context = context }
-
-        fun backgroundColor(color: Int) = apply {
-            this.backgroundColor = color
-        }
-
-        fun foregroundColor(color: Int) = apply {
-            this.foregroundColor = color
-        }
-
-        fun size(px: Int) = apply {
-            this.size = px
-        }
-
-        fun enableBackground(enable: Boolean = true) = apply {
-            this.enableBackground = enable
-        }
-
-        fun useGradient(
-            startColor:Int,
-            endColor:Int,
-            orientation: GradientDrawable.Orientation = GradientDrawable.Orientation.TOP_BOTTOM
-        ) = apply {
-            enableGradient = true
-            this.gradientStartColor = startColor
-            this.gradientEndColor = endColor
-            this.gradientOrientation = orientation
-        }
-
-        fun disableGradient() = apply {
-            enableGradient = false
-        }
-
-        fun radius(radius: Int) = apply {
-            cornerRadius = radius
-        }
-
-        fun setPadding(padding: Int) = apply {
-            this.padding = padding
-        }
-
-        fun create(stringId: Int = this.stringId):Drawable? {
-            try {
-                // get material font
-                context?.let {
-                    val tv = TextView(it)
-                    tv.setTextColor(this.foregroundColor)
-
-                    tv.typeface = Typeface.createFromAsset(it.assets, "mdifont.ttf")
-                    tv.textSize = this.size.toFloat()/3
-                    tv.text = it.getString(this.stringId)
-                    tv.gravity = Gravity.CENTER
-                    tv.measure(
-                        View.MeasureSpec.makeMeasureSpec(this.size+2* padding, View.MeasureSpec.EXACTLY),
-                        View.MeasureSpec.makeMeasureSpec(this.size+2* padding, View.MeasureSpec.EXACTLY)
-                    )
-                    if(enableBackground)
-                        tv.background = generateBackground()
-                    tv.setPadding(padding, padding, padding, padding)
-                    tv.layout(0,0,this.size+2* padding, this.size+2* padding)
-
-                    tv.invalidate()
-
-                    val bitmap = Bitmap.createBitmap(tv.width, tv.height, Bitmap.Config.ARGB_8888)
-                    var canvas = Canvas(bitmap)
-                    tv.draw(canvas)
-                    return BitmapDrawable(it.resources, bitmap)
-                }
-            } catch (e: Exception) {
-                Log.e("MDID",e.toString())
-            }
-            return null
-        }
-
-        private fun generateBackground():GradientDrawable? {
-            val drawable = GradientDrawable()
-            drawable.cornerRadius = cornerRadius.toFloat()
-            if(enableGradient) {
-                drawable.gradientType = gradientOrientation.ordinal
-                drawable.colors = intArrayOf(gradientStartColor,gradientEndColor)
-            } else {
-                drawable.setColor(backgroundColor)
-            }
-            return drawable
-        }
+    constructor(context:Context, config:DrawableConfig):this(context) {
+        this.config = config
     }
+
+    fun stringId(id: Int) = apply {
+        config.stringId = id
+    }
+
+    fun backgroundColor(color: Int) = apply {
+        config.backgroundColor = color
+    }
+
+    fun iconColor(color: Int) = apply {
+        config.iconColor = color
+    }
+
+    fun size(px: Int) = apply {
+        config.size = px
+    }
+
+    fun sizeDp(dp: Int) = apply {
+        config.size =
+            (dp* context.resources.displayMetrics.densityDpi/DisplayMetrics.DENSITY_DEFAULT)
+    }
+
+    fun enableBackground(enable: Boolean = true) = apply {
+        config.enableBackground = enable
+    }
+
+    fun useGradient(
+        startColor:Int,
+        endColor:Int,
+        orientation: GradientDrawable.Orientation = GradientDrawable.Orientation.TOP_BOTTOM
+    ) = apply {
+        config.enableGradient = true
+        config.gradientStartColor = startColor
+        config.gradientEndColor = endColor
+        config.gradientOrientation = orientation
+    }
+
+    fun disableGradient() = apply {
+        config.enableGradient = false
+    }
+
+    fun radius(radius: Int) = apply {
+        config.cornerRadius = radius
+    }
+
+    fun setPadding(padding: Int) = apply {
+        config.padding = padding
+    }
+
+    fun setStroke(
+        width: Int,
+        color: Int = Color.BLACK,
+        length: Float = 10f,
+        gap: Float = 0f
+    ) = apply {
+        config.strokeWidth = width
+        config.strokeColor = color
+        config.strokeDashWidth = length
+        config.strokeDashGap = gap
+    }
+
+
+    fun create(stringId: Int = config.stringId):Drawable? {
+        try {
+            config.stringId = stringId
+            // get material font
+            context.let {
+                Log.d("MDID", config.showConfig())
+                val tv = TextView(it)
+
+                tv.setTextColor(config.iconColor)
+
+
+                tv.typeface = Typeface.createFromAsset(it.assets, "mdifont.ttf")
+                tv.textSize = config.size.toFloat()/3
+                tv.text = it.getString(config.stringId)
+                tv.gravity = Gravity.CENTER
+                tv.measure(
+                    View.MeasureSpec.makeMeasureSpec(config.size+2* config.padding, View.MeasureSpec.EXACTLY),
+                    View.MeasureSpec.makeMeasureSpec(config.size+2* config.padding, View.MeasureSpec.EXACTLY)
+                )
+                if(config.enableBackground)
+                    tv.background = generateBackground()
+                tv.setPadding(config.padding, config.padding, config.padding, config.padding)
+                tv.layout(0,0,config.size+2* config.padding, config.size+2* config.padding)
+
+                tv.invalidate()
+
+                val bitmap = Bitmap.createBitmap(tv.width, tv.height, Bitmap.Config.ARGB_8888)
+                var canvas = Canvas(bitmap)
+                tv.draw(canvas)
+                return BitmapDrawable(it.resources, bitmap)
+            }
+        } catch (e: Exception) {
+            Log.e("MDID",e.toString())
+        }
+        return null
+    }
+
+    private fun generateBackground():GradientDrawable? {
+        val drawable = GradientDrawable()
+        drawable.cornerRadius = config.cornerRadius.toFloat()
+        drawable.setStroke(config.strokeWidth, config.strokeColor, config.strokeDashWidth, config.strokeDashGap)
+        if(config.enableGradient) {
+            drawable.gradientType = config.gradientOrientation.ordinal
+            drawable.colors = intArrayOf(config.gradientStartColor,config.gradientEndColor)
+        } else {
+            drawable.setColor(config.backgroundColor)
+        }
+        return drawable
+    }
+
 }
