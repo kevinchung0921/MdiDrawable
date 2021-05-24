@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.kevinchung.mdi_drawable.DrawableConfig
-import com.kevinchung.mdi_drawable.MdiDrawableBuilder
+import com.kevinchung.mdi_drawable.MdiDrawable
 
 class DrawableAdapter(
         private val context: Context,
@@ -39,7 +39,7 @@ class DrawableViewHolder(private val view:View):RecyclerView.ViewHolder(view){
     private var desc: TextView = view.findViewById(R.id.tvDesc)
 
     fun onBindView(config:DrawableConfig) {
-        val builder = MdiDrawableBuilder(view.context)
+        val builder = MdiDrawable(view.context)
         builder.config = config
         image.background = builder.create()
         desc.text = config.showConfig()

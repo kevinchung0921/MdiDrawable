@@ -14,10 +14,9 @@ import android.view.Gravity
 import android.view.View
 import android.widget.TextView
 
-class MdiDrawableBuilder(private val context:Context) {
+class MdiDrawable(private val context:Context) {
 
     var config = DrawableConfig()
-
 
     constructor(context:Context, config:DrawableConfig):this(context) {
         this.config = config
@@ -122,16 +121,15 @@ class MdiDrawableBuilder(private val context:Context) {
     }
 
     private fun generateBackground():GradientDrawable? {
-        val drawable = GradientDrawable()
-        drawable.cornerRadius = config.cornerRadius.toFloat()
-        drawable.setStroke(config.strokeWidth, config.strokeColor, config.strokeDashWidth, config.strokeDashGap)
+        var drawable = GradientDrawable()
+
         if(config.enableGradient) {
-            drawable.gradientType = config.gradientOrientation.ordinal
-            drawable.colors = intArrayOf(config.gradientStartColor,config.gradientEndColor)
+            drawable = GradientDrawable(config.gradientOrientation, intArrayOf(config.gradientStartColor,config.gradientEndColor))
         } else {
             drawable.setColor(config.backgroundColor)
         }
+        drawable.cornerRadius = config.cornerRadius.toFloat()
+        drawable.setStroke(config.strokeWidth, config.strokeColor, config.strokeDashWidth, config.strokeDashGap)
         return drawable
     }
-
 }

@@ -59,7 +59,9 @@ if(os.path.isfile(CSS_FILE)):
 		if(not prefixFound):
 			match = prefixRe.match(line)
 			if(match):
-				outputline = '<string name="'+match.group(1).replace('-','_')+'">'
+				name = match.group(1).replace('-','_')
+				outputline = '<string name="'+name+'">'
+				print('<item>'+name.replace('mdi_','')+'</item>')
 				prefixFound = True
 		else:
 			match = contentRe.match(line)

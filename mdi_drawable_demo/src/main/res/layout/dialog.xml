@@ -29,12 +29,17 @@
                 app:labelText="@string/name"
                 app:useDenseSpacing="true"
                 android:paddingTop="4dp"
+                app:hasClearButton="true"
                 >
 
                 <studio.carbonylgroup.textfieldboxes.ExtendedEditText
                     android:id="@+id/exeditName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:prefix="mdi_"
+                    android:text="android"
+                    android:dropDownWidth="200dp"
+
                     />
 
             </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
@@ -53,6 +58,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
+                    android:text="100"
+                    app:suffix="px"
                     />
 
             </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
@@ -71,6 +78,7 @@
                     android:id="@+id/exeditColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     />
             </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
@@ -101,13 +109,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:text="0"
+                        app:suffix="px"
                         />
                 </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
                 <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
                     android:id="@+id/editBgColorStart"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:labelText="@string/color"
+                    app:labelText="@string/start_color"
                     app:useDenseSpacing="true"
                     app:endIcon="@drawable/palette"
                     android:paddingTop="4dp"
@@ -123,7 +133,7 @@
                     android:id="@+id/editBgColorEnd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:labelText="@string/color"
+                    app:labelText="@string/end_color"
                     app:useDenseSpacing="true"
                     app:endIcon="@drawable/palette"
                     android:paddingTop="4dp"
@@ -133,6 +143,7 @@
                         android:id="@+id/exeditBgColorEnd"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+
                         />
                 </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
             </LinearLayout>

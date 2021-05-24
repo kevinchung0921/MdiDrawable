@@ -6,4 +6,6 @@
     <string name="color">color</string>
     <string name="radius">radius</string>
     <string name="background">background</string>
+    <string name="start_color">start color</string>
+    <string name="end_color">end color</string>
 </resources>
