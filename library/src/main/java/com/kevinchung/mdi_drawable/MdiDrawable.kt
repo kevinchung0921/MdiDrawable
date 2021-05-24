@@ -16,9 +16,9 @@ import android.widget.TextView
 
 class MdiDrawable(private val context:Context) {
 
-    var config = DrawableConfig()
+    var config = MdiDrawableConfig()
 
-    constructor(context:Context, config:DrawableConfig):this(context) {
+    constructor(context:Context, config:MdiDrawableConfig):this(context) {
         this.config = config
     }
 
@@ -83,19 +83,24 @@ class MdiDrawable(private val context:Context) {
     }
 
 
+    /**
+     * Create drawable by configuration object
+     * @param stringId Material Design Icon font string resource id
+     * @return Drawable object
+     */
+
     fun create(stringId: Int = config.stringId):Drawable? {
         try {
             config.stringId = stringId
             // get material font
             context.let {
-                Log.d("MDID", config.showConfig())
                 val tv = TextView(it)
 
                 tv.setTextColor(config.iconColor)
 
 
                 tv.typeface = Typeface.createFromAsset(it.assets, "mdifont.ttf")
-                tv.textSize = config.size.toFloat()/3
+                tv.textSize = config.size.toFloat()/2.8f
                 tv.text = it.getString(config.stringId)
                 tv.gravity = Gravity.CENTER
                 tv.measure(
@@ -120,16 +125,25 @@ class MdiDrawable(private val context:Context) {
         return null
     }
 
+
     private fun generateBackground():GradientDrawable? {
         var drawable = GradientDrawable()
 
         if(config.enableGradient) {
-            drawable = GradientDrawable(config.gradientOrientation, intArrayOf(config.gradientStartColor,config.gradientEndColor))
+            drawable = GradientDrawable(
+                    config.gradientOrientation,
+                    intArrayOf(config.gradientStartColor,config.gradientEndColor)
+            )
         } else {
             drawable.setColor(config.backgroundColor)
         }
         drawable.cornerRadius = config.cornerRadius.toFloat()
-        drawable.setStroke(config.strokeWidth, config.strokeColor, config.strokeDashWidth, config.strokeDashGap)
+        drawable.setStroke(
+                config.strokeWidth,
+                config.strokeColor,
+                config.strokeDashWidth,
+                config.strokeDashGap
+        )
         return drawable
     }
 }

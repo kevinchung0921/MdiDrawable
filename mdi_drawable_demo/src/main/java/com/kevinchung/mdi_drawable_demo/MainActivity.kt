@@ -4,10 +4,8 @@ import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.kevinchung.mdi_drawable.DrawableConfig
+import com.kevinchung.mdi_drawable.MdiDrawableConfig
 import com.kevinchung.mdi_drawable.MdiDrawable
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
@@ -17,7 +15,7 @@ import org.greenrobot.eventbus.ThreadMode
 
 class MainActivity : AppCompatActivity() {
 
-    private val drawableList = ArrayList<DrawableConfig>()
+    private val drawableList = ArrayList<MdiDrawableConfig>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,29 +28,12 @@ class MainActivity : AppCompatActivity() {
         setRecyclerView()
     }
 
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-
     private fun setFab() {
         fab.setImageDrawable(MdiDrawable(this)
             .stringId(R.string.mdi_plus)
             .create())
 
+        // show AddDialog for adding custom icon
         fab.setOnClickListener {
             AddDialog(this).show()
         }
@@ -67,76 +48,68 @@ class MainActivity : AppCompatActivity() {
         rvDrawables.adapter = adapter
     }
 
+    // receive configuration object from AddDialog and insert to list
     @Subscribe(threadMode=ThreadMode.MAIN)
-    fun onAddDrawable(config:DrawableConfig) {
+    fun onAddDrawable(config:MdiDrawableConfig) {
         drawableList.add(0, config)
+        // add at first position
         rvDrawables.adapter?.notifyItemInserted(0)
     }
 
 
+    // create demo icons
     private fun setDataList() {
+
         drawableList.add(
-                DrawableConfig(
-                        stringId = R.string.mdi_star,
-                        iconColor = resources.getColor(R.color.amber_400)
-                )
-        )
-        drawableList.add(
-                DrawableConfig(
-                        stringId = R.string.mdi_cloud,
-                        iconColor = resources.getColor(R.color.pink_400)
-                )
-        )
-        drawableList.add(
-                DrawableConfig(
+                MdiDrawableConfig(
                         stringId = R.string.mdi_atom_variant,
                         iconColor = resources.getColor(R.color.blue_A200)
                 )
         )
         drawableList.add(
-                DrawableConfig(
+                MdiDrawableConfig(
                         stringId = R.string.mdi_bullseye_arrow,
                         iconColor = resources.getColor(R.color.red_300)
                 )
         )
         drawableList.add(
-                DrawableConfig(
+                MdiDrawableConfig(
                         stringId = R.string.mdi_coffee,
                         iconColor = resources.getColor(R.color.cyan_A700)
                 )
         )
         drawableList.add(
-                DrawableConfig(
+                MdiDrawableConfig(
                         stringId = R.string.mdi_collage,
                         iconColor = resources.getColor(R.color.red_500)
                 )
         )
 
         drawableList.add(
-                DrawableConfig(
+                MdiDrawableConfig(
                         stringId = R.string.mdi_format_wrap_inline,
                         iconColor = resources.getColor(R.color.deep_orange_A200)
                 )
         )
 
         drawableList.add(
-                DrawableConfig(
+                MdiDrawableConfig(
                         stringId = R.string.mdi_emoticon_cool,
-                        size = 64,
+                        size = 48,
                         iconColor = resources.getColor(R.color.green_900)
                 )
         )
 
         drawableList.add(
-                DrawableConfig(
+                MdiDrawableConfig(
                         stringId = R.string.mdi_emoticon_happy,
                         size = 200,
-                        iconColor = resources.getColor(R.color.teal_700)
+                        iconColor = resources.getColor(R.color.teal_300)
                 )
         )
 
         drawableList.add(
-                DrawableConfig(
+                MdiDrawableConfig(
                         stringId = R.string.mdi_car,
                         enableBackground = true,
                         strokeColor = resources.getColor(R.color.grey_900),
@@ -145,7 +118,7 @@ class MainActivity : AppCompatActivity() {
                 )
         )
         drawableList.add(
-                DrawableConfig(
+                MdiDrawableConfig(
                         stringId = R.string.mdi_card_account_details,
                         enableBackground = true,
                         strokeColor = resources.getColor(R.color.blue_grey_400),
@@ -157,7 +130,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         drawableList.add(
-                DrawableConfig(
+                MdiDrawableConfig(
                         stringId = R.string.mdi_devices,
                         enableBackground = true,
                         strokeColor = resources.getColor(R.color.purple_300),
@@ -170,7 +143,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         drawableList.add(
-                DrawableConfig(
+                MdiDrawableConfig(
                         stringId = R.string.mdi_chart_bar_stacked,
                         enableBackground = true,
                         cornerRadius = 6,
@@ -182,7 +155,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         drawableList.add(
-                DrawableConfig(
+                MdiDrawableConfig(
                         stringId = R.string.mdi_check_decagram,
                         enableBackground = true,
                         cornerRadius = 100,
@@ -192,7 +165,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         drawableList.add(
-                DrawableConfig(
+                MdiDrawableConfig(
                         stringId = R.string.mdi_checkerboard,
                         enableBackground = true,
                         cornerRadius = 100,
@@ -206,7 +179,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         drawableList.add(
-                DrawableConfig(
+                MdiDrawableConfig(
                         stringId = R.string.mdi_desktop_mac,
                         enableBackground = true,
                         cornerRadius = 30,

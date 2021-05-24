@@ -33,7 +33,7 @@
                 >
 
                 <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-                    android:id="@+id/exeditName"
+                    android:id="@+id/exEditName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:prefix="mdi_"
@@ -75,7 +75,7 @@
                 >
 
                 <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-                    android:id="@+id/exeditColor"
+                    android:id="@+id/exEditColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
@@ -124,7 +124,7 @@
                     >
 
                     <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-                        android:id="@+id/exeditBgColorStart"
+                        android:id="@+id/exEditBgColorStart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         />
@@ -140,7 +140,7 @@
                     >
 
                     <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-                        android:id="@+id/exeditBgColorEnd"
+                        android:id="@+id/exEditBgColorEnd"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 

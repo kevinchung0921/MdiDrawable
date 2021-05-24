@@ -4,12 +4,14 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 
-class DrawableConfig(
+class MdiDrawableConfig(
+    // basic settings
     var stringId: Int = R.string.mdi_android,
     var iconColor: Int = Color.BLACK,
     var size: Int = 100,
     var padding: Int = 0,
 
+    // background settings
     var enableBackground: Boolean = false,
     var cornerRadius: Int = 0,
     var backgroundColor: Int = Color.TRANSPARENT,
@@ -18,6 +20,7 @@ class DrawableConfig(
     var gradientEndColor: Int = Color.DKGRAY,
     var gradientOrientation: GradientDrawable.Orientation = GradientDrawable.Orientation.TOP_BOTTOM,
 
+    // stroke settings
     var strokeColor: Int = Color.BLACK,
     var strokeWidth: Int = 0,
     var strokeDashWidth: Float = 10f,

@@ -8,7 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import com.github.dhaval2404.colorpicker.ColorPickerDialog
-import com.kevinchung.mdi_drawable.DrawableConfig
+import com.kevinchung.mdi_drawable.MdiDrawableConfig
 import com.kevinchung.mdi_drawable.MdiDrawable
 import kotlinx.android.synthetic.main.dialog.*
 import org.greenrobot.eventbus.EventBus
@@ -20,7 +20,7 @@ class AddDialog(context:Context): Dialog(context) {
         private val TAG = "AddDialog"
     }
 
-    private val drawableConfig = DrawableConfig()
+    private val drawableConfig = MdiDrawableConfig()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,16 +40,17 @@ class AddDialog(context:Context): Dialog(context) {
         updateIcon()
     }
 
-    private fun loadAsset() {
+    // read the all resource name from string array and create adapter
+    private fun loadAutoCompleteList() {
         val mdiArray = context.resources.getStringArray(R.array.mdi_names)
         val adapter = ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line, mdiArray)
-        exeditName.setAdapter(adapter)
+        exEditName.setAdapter(adapter)
     }
 
     private fun setEdits() {
 
 
-        loadAsset()
+        loadAutoCompleteList()
 
         editSize.setSimpleTextChangeWatcher { theNewText, _ ->
             try {
@@ -61,14 +62,14 @@ class AddDialog(context:Context): Dialog(context) {
         editColor.endIconImageButton.setOnClickListener {
             var color = Color.BLACK
             try {
-                color = exeditColor.text.toString().toInt()
+                color = exEditColor.text.toString().toInt()
 
             } catch(e:Exception){}
 
-            showColorPicker(color, exeditColor)
+            showColorPicker(color, exEditColor)
         }
 
-        exeditColor.setText(Integer.toHexString(drawableConfig.iconColor))
+        exEditColor.setText(Integer.toHexString(drawableConfig.iconColor))
 
         editColor.setSimpleTextChangeWatcher { theNewText, isError ->
             try {
@@ -82,14 +83,14 @@ class AddDialog(context:Context): Dialog(context) {
         editBgColorStart.endIconImageButton.setOnClickListener {
             var color = Color.BLACK
             try {
-                color = exeditBgColorStart.text.toString().toLong(radix = 16).toInt()
+                color = exEditBgColorStart.text.toString().toLong(radix = 16).toInt()
             } catch(e:Exception){
                 Log.d(TAG,e.toString())
             }
-            showColorPicker(color, exeditBgColorStart)
+            showColorPicker(color, exEditBgColorStart)
         }
 
-        editBgColorStart.setSimpleTextChangeWatcher { theNewText, isError ->
+        editBgColorStart.setSimpleTextChangeWatcher { theNewText, _ ->
             try {
                 drawableConfig.gradientStartColor = theNewText.toLong(radix = 16).toInt()
                 updateIcon()
@@ -99,13 +100,13 @@ class AddDialog(context:Context): Dialog(context) {
         editBgColorEnd.endIconImageButton.setOnClickListener {
             var color = Color.BLACK
             try {
-                color = exeditBgColorEnd.text.toString().toLong(radix = 16).toInt()
+                color = exEditBgColorEnd.text.toString().toLong(radix = 16).toInt()
 
             } catch(e:Exception){}
-            showColorPicker(color, exeditBgColorEnd)
+            showColorPicker(color, exEditBgColorEnd)
         }
 
-        editBgColorEnd.setSimpleTextChangeWatcher { theNewText, isError ->
+        editBgColorEnd.setSimpleTextChangeWatcher { theNewText, _ ->
             try {
                 drawableConfig.gradientEndColor = theNewText.toLong(radix = 16).toInt()
                 updateIcon()
