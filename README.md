@@ -2,7 +2,7 @@
 
 # MdiDrawable
 
-This library is a simple [material design icon](https://materialdesignicons.com/) icon generator. 
+This library is a simple [Material Design Icon](https://materialdesignicons.com/) icon generator. 
 Just simply provide the icon name resource id, and the library will generate the icon drawable for you at run time.
 You don't need to download each png file from website everytime.
 
@@ -52,6 +52,8 @@ MdiDrawable(context)
 ```
 
 
+#### Demo:
+
 This project also come with a demo app which show different drawable configurations. 
 
 <img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot_1621898935.png' />
@@ -59,3 +61,7 @@ This project also come with a demo app which show different drawable configurati
 And also provide UI allow you to create your own drawable.
 
 <img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot_1621818157.png' />
+
+#### Update Library:
+
+If you need to use latest icon whenever Material Font updated, just delete the folder "mdi" under the library project folder and execute *"donwload.py"*. This will download the latest Material Design Font package and generate string resource table.
