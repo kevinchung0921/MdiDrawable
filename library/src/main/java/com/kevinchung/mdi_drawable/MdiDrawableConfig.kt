@@ -24,13 +24,23 @@ class MdiDrawableConfig(
     var strokeColor: Int = Color.BLACK,
     var strokeWidth: Int = 0,
     var strokeDashWidth: Float = 10f,
-    var strokeDashGap: Float = 0f
+    var strokeDashGap: Float = 0f,
+
+    // shadow settings
+    var shadowColor: Int = Color.TRANSPARENT,
+    var shadowRadius: Float = 0f,
+    var shadowDx: Float = 0f,
+    var shadowDy: Float = 0f
+
 ) {
     fun showConfig():String {
         val sb = StringBuilder()
         sb.append("id:[${Integer.toHexString(stringId)}] size [$size], padding [$padding], color:[${Integer.toHexString(iconColor)}] ")
         if(enableBackground) {
-            sb.append("gradient [$enableGradient], radius [$cornerRadius], stroke [$strokeWidth]")
+            sb.append("gradient [$enableGradient], radius [$cornerRadius], stroke [$strokeWidth] ")
+        }
+        if(shadowColor!=Color.TRANSPARENT && (shadowDx!=0f || shadowDy!=0f)) {
+            sb.append(", shadow radius[$shadowRadius] dx[$shadowDx] dy[$shadowDy] color[${Integer.toHexString(shadowColor)}]")
         }
         return sb.toString()
     }

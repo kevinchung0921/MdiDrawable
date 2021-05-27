@@ -60,12 +60,7 @@ class MainActivity : AppCompatActivity() {
     // create demo icons
     private fun setDataList() {
 
-        drawableList.add(
-                MdiDrawableConfig(
-                        stringId = R.string.mdi_atom_variant,
-                        iconColor = resources.getColor(R.color.blue_A200)
-                )
-        )
+
         drawableList.add(
                 MdiDrawableConfig(
                         stringId = R.string.mdi_bullseye_arrow,
@@ -75,7 +70,11 @@ class MainActivity : AppCompatActivity() {
         drawableList.add(
                 MdiDrawableConfig(
                         stringId = R.string.mdi_coffee,
-                        iconColor = resources.getColor(R.color.cyan_A700)
+                        iconColor = resources.getColor(R.color.cyan_A700),
+                        shadowColor = resources.getColor(R.color.grey_600),
+                        shadowDx = 4f,
+                        shadowDy = 4f,
+                        shadowRadius = 8f
                 )
         )
         drawableList.add(
@@ -94,8 +93,8 @@ class MainActivity : AppCompatActivity() {
 
         drawableList.add(
                 MdiDrawableConfig(
-                        stringId = R.string.mdi_emoticon_cool,
-                        size = 48,
+                        stringId = R.string.mdi_emoticon_sad,
+                        size = 36,
                         iconColor = resources.getColor(R.color.green_900)
                 )
         )
@@ -114,7 +113,11 @@ class MainActivity : AppCompatActivity() {
                         enableBackground = true,
                         strokeColor = resources.getColor(R.color.grey_900),
                         backgroundColor = resources.getColor(R.color.blue_grey_600),
-                        iconColor = resources.getColor(R.color.vordiplom_0)
+                        iconColor = resources.getColor(R.color.green_900),
+                        shadowColor = resources.getColor(R.color.grey_200),
+                        shadowRadius = 1f,
+                        shadowDy = 4f,
+                        shadowDx = 4f
                 )
         )
         drawableList.add(
@@ -169,7 +172,7 @@ class MainActivity : AppCompatActivity() {
                         stringId = R.string.mdi_checkerboard,
                         enableBackground = true,
                         cornerRadius = 100,
-                        padding = 4,
+                        padding = 8,
                         iconColor = Color.WHITE,
                         enableGradient = true,
                         gradientStartColor = resources.getColor(R.color.light_blue_900),
@@ -183,7 +186,7 @@ class MainActivity : AppCompatActivity() {
                         stringId = R.string.mdi_desktop_mac,
                         enableBackground = true,
                         cornerRadius = 30,
-                        padding = 6,
+                        padding = 16,
                         iconColor = resources.getColor(R.color.joyful_2),
                         backgroundColor = resources.getColor(R.color.joyful_1)
                 )

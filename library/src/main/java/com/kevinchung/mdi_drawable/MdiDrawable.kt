@@ -13,6 +13,7 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 
 class MdiDrawable(private val context:Context) {
 
@@ -70,7 +71,7 @@ class MdiDrawable(private val context:Context) {
         config.padding = padding
     }
 
-    fun setStroke(
+    fun stroke(
         width: Int,
         color: Int = Color.BLACK,
         length: Float = 10f,
@@ -80,6 +81,18 @@ class MdiDrawable(private val context:Context) {
         config.strokeColor = color
         config.strokeDashWidth = length
         config.strokeDashGap = gap
+    }
+
+    fun shadow(
+        color: Int = Color.TRANSPARENT,
+        radius: Float = 0f,
+        dx: Float = 0f,
+        dy: Float = 0f
+    ) = apply {
+        config.shadowColor = color
+        config.shadowRadius = radius
+        config.shadowDx = dx
+        config.shadowDy = dy
     }
 
 
@@ -99,7 +112,8 @@ class MdiDrawable(private val context:Context) {
                 tv.setTextColor(config.iconColor)
 
 
-                tv.typeface = Typeface.createFromAsset(it.assets, "mdifont.ttf")
+                tv.typeface = ResourcesCompat.getFont(it, R.font.mdi)
+
                 tv.textSize = config.size.toFloat()/2.8f
                 tv.text = it.getString(config.stringId)
                 tv.gravity = Gravity.CENTER
@@ -109,6 +123,10 @@ class MdiDrawable(private val context:Context) {
                 )
                 if(config.enableBackground)
                     tv.background = generateBackground()
+
+                tv.setShadowLayer(config.shadowRadius, config.shadowDx, config.shadowDy, config.shadowColor)
+
+
                 tv.setPadding(config.padding, config.padding, config.padding, config.padding)
                 tv.layout(0,0,config.size+2* config.padding, config.size+2* config.padding)
 

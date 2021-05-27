@@ -13,7 +13,7 @@ ZIP_FILE = WORK_DIR+'mdi.zip'
 
 CSS_FILE = WORK_DIR+'MaterialDesign-Webfont-master/css/materialdesignicons.css'
 STRING_TABLE = './src/main/res/values/mdi_strings.xml'
-ASSET_FOLDER = './src/main/assets/'
+FONT_FOLDER = './src/main/res/font/'
 
 FONT_FILE = WORK_DIR+'MaterialDesign-Webfont-master/fonts/materialdesignicons-webfont.ttf'
 
@@ -36,12 +36,12 @@ zf.extractall(WORK_DIR)
 zf.close()
 
 # check if asset folder created
-if(not os.path.isdir(ASSET_FOLDER)):
-	os.mkdir(ASSET_FOLDER)
+if(not os.path.isdir(FONT_FOLDER)):
+	os.mkdir(FONT_FOLDER)
 
 # check if font file copied
-if(not os.path.isfile(ASSET_FOLDER+FONT_FILE)):
-	copyfile(FONT_FILE,ASSET_FOLDER+'/mdifont.ttf')
+if(not os.path.isfile(FONT_FOLDER+FONT_FILE)):
+	copyfile(FONT_FILE,FONT_FOLDER+'/mdifont.ttf')
 
 if(os.path.isfile(CSS_FILE)):
 	print('found css file, generating string table ..')
