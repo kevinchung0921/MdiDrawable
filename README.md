@@ -17,20 +17,42 @@ allprojects {
 ```
 ```groovy
 dependencies {
-    implementation 'com.github.kevinchung0921:MdiDrawable:0.1.0'
+    implementation 'com.github.kevinchung0921:MdiDrawable:0.1.1'
 }
 ```
 
 #### Basic usage:
-For example, use the following code when you need an alert icon.
 
-```
-MdiDrawable(context)
+Use the following code when you need an alert icon programmaticaly 
+```kotlin
+imageview.background = MdiDrawable(context)
      .stringId(R.string.mdi_alert_decagram)
      .create()
 ```
 
 <img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot_1621901926.png' />
+
+
+Or use MdiView class to create it in layout file.
+
+```xml
+<com.kevinchung.mdi_drawable.MdiView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mdi_calendar"
+            android:textSize="40dp"
+            android:padding="4dp"
+            app:bgColor = "@color/blue_grey_600"
+            app:useGradient="true"
+            app:cornerRadius="6dp"
+            app:gradientStartColor="@color/blue_grey_600"
+            app:gradientEndColor="@color/blue_grey_100"
+            app:gradientOrientation="rightLeft"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/black"
+            />
+
+```
 
 And put the drawable into an ImageView or to the any view which support background drawable.
 
@@ -38,16 +60,18 @@ The icon string resource name could found in and add prefix *"mdi_"* and change 
 ![](https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot%20from%202021-05-25%2007-41-30.png)
 
 
-#### Other settings:
+#### More settings:
 
-```
-MdiDrawable(context)
+``` kotlin
+imageview.background = MdiDrawable(context)
     .stringId(R.string.mdi_android)
     .size(60)
+    .radius(60)
     .iconColor(Color.BLUE)
     .enableBackground(true)
     .useGradient(Color.DKGRAY, Color.LTGRAY)
-    .radius(60)
+    .stroke(width=2, color.BLACK, length=10, gap=2)
+    .shadow(color=Color.BLACK, radius=4, dx=10, dy=10)
     .create()
 ```
 
@@ -56,7 +80,7 @@ MdiDrawable(context)
 
 This project also come with a demo app which show different drawable configurations. 
 
-<img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot_1621898935.png' />
+<img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot_1622073781.png' />
 
 And also provide UI allow you to create your own drawable.
 
