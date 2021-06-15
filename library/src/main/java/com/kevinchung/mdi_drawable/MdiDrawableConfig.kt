@@ -6,6 +6,7 @@ import android.graphics.drawable.GradientDrawable
 
 class MdiDrawableConfig(
     // basic settings
+    var iconString: String? = "",
     var stringId: Int = R.string.mdi_android,
     var iconColor: Int = Color.BLACK,
     var size: Int = 100,

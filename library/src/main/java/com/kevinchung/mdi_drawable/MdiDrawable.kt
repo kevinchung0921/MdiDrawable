@@ -23,6 +23,12 @@ class MdiDrawable(private val context:Context) {
         this.config = config
     }
 
+    fun iconString(string: String) = apply {
+        config.iconString = string
+        // set id as invalid value to prevent get icon string from id
+        config.stringId = -1
+    }
+
     fun stringId(id: Int) = apply {
         config.stringId = id
     }
@@ -102,7 +108,7 @@ class MdiDrawable(private val context:Context) {
      * @return Drawable object
      */
 
-    fun create(stringId: Int = config.stringId):Drawable? {
+    @JvmOverloads fun create(stringId: Int = config.stringId):Drawable? {
         try {
             config.stringId = stringId
             // get material font
@@ -111,11 +117,15 @@ class MdiDrawable(private val context:Context) {
 
                 tv.setTextColor(config.iconColor)
 
-
                 tv.typeface = ResourcesCompat.getFont(it, R.font.mdi)
 
                 tv.textSize = config.size.toFloat()/2.8f
-                tv.text = it.getString(config.stringId)
+
+                if(config.stringId != -1)
+                    tv.text = it.getString(config.stringId)
+                else
+                    tv.text = config.iconString
+
                 tv.gravity = Gravity.CENTER
                 tv.measure(
                     View.MeasureSpec.makeMeasureSpec(config.size+2* config.padding, View.MeasureSpec.EXACTLY),
@@ -132,7 +142,11 @@ class MdiDrawable(private val context:Context) {
 
                 tv.invalidate()
 
-                val bitmap = Bitmap.createBitmap(tv.width, tv.height, Bitmap.Config.ARGB_8888)
+                val bitmap = Bitmap.createBitmap(
+                        tv.width,
+                        tv.height,
+                        Bitmap.Config.ARGB_8888
+                )
                 var canvas = Canvas(bitmap)
                 tv.draw(canvas)
                 return BitmapDrawable(it.resources, bitmap)
