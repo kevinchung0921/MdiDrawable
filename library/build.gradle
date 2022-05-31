@@ -7,7 +7,7 @@ android {
     compileSdkVersion 30
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 17
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -39,7 +39,7 @@ task downloadMdiPackage(type: Exec)  {
         commandLine 'sh', '-c', "$projectDir/download.py"
     }
 }
-preBuild.dependsOn downloadMdiPackage
+// preBuild.dependsOn downloadMdiPackage
 
 dependencies {
 

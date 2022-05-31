@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="6dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/ivDrawable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                android:id="@+id/editName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="@string/name"
+                app:useDenseSpacing="true"
+                android:paddingTop="4dp"
+                app:hasClearButton="true"
+                >
+
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                    android:id="@+id/exEditName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:prefix="mdi_"
+                    android:text="android"
+                    android:dropDownWidth="200dp"
+
+                    />
+
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                android:id="@+id/editSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="@string/size"
+                app:useDenseSpacing="true"
+                android:paddingTop="4dp"
+                >
+
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                    android:id="@+id/exeditSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:text="100"
+                    app:suffix="px"
+                    />
+
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                android:id="@+id/editColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="@string/color"
+                app:useDenseSpacing="true"
+                app:endIcon="@drawable/palette"
+                android:paddingTop="4dp"
+                >
+
+                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                    android:id="@+id/exEditColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    />
+            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchBackground"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/background"
+                android:paddingTop="4dp"/>
+
+            <LinearLayout
+                android:id="@+id/layoutBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                    android:id="@+id/editRadius"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:labelText="@string/radius"
+                    app:useDenseSpacing="true"
+                    android:paddingTop="4dp"
+                    >
+
+                    <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:text="0"
+                        app:suffix="px"
+                        />
+                </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+                <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                    android:id="@+id/editBgColorStart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:labelText="@string/start_color"
+                    app:useDenseSpacing="true"
+                    app:endIcon="@drawable/palette"
+                    android:paddingTop="4dp"
+                    >
+
+                    <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                        android:id="@+id/exEditBgColorStart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+                </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+                <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                    android:id="@+id/editBgColorEnd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:labelText="@string/end_color"
+                    app:useDenseSpacing="true"
+                    app:endIcon="@drawable/palette"
+                    android:paddingTop="4dp"
+                    >
+
+                    <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                        android:id="@+id/exEditBgColorEnd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        />
+                </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="@android:string/cancel"/>
+        <Button
+            android:id="@+id/btnOk"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="@android:string/ok"/>
+    </LinearLayout>
+</LinearLayout>
