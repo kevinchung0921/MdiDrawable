@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="MdiView">
+        <attr name="android:text"/>
+        <attr name="android:shadowColor"/>
+        <attr name="android:shadowDx"/>
+        <attr name="android:shadowDy"/>
+        <attr name="android:shadowRadius"/>
+        <attr name="android:textSize"/>
+        <attr name="android:textColor"/>
+        <attr name="android:padding"/>
 
-        <attr name="useGradient" format="boolean" />
-        <attr name="bgColor" format="boolean" />
-        <attr name="gradientStartColor" format="color" />
-        <attr name="gradientEndColor" format="color" />
-        <attr name="gradientOrientation">
+        <attr name="bgColor" format="color" />
+        <attr name="bgGradientStartColor" format="color" />
+        <attr name="bgGradientEndColor" format="color" />
+        <attr name="iconGradientStartColor" format="color" />
+        <attr name="iconGradientEndColor" format="color" />
+        <attr name="bgGradientOrientation">
+            <enum name="topDown" value="0" />
+            <enum name="tr_bl" value="1" />
+            <enum name="rightLeft" value="2" />
+            <enum name="br_tl" value="3" />
+            <enum name="bottomTop" value="4" />
+            <enum name="bl_tr" value="5" />
+            <enum name="leftRight" value="6" />
+            <enum name="tl_br" value="7" />
+        </attr>
+        <attr name="iconGradientOrientation">
             <enum name="topDown" value="0" />
             <enum name="tr_bl" value="1" />
             <enum name="rightLeft" value="2" />

@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.kevinchung.mdi_drawable.MdiDrawableConfig
-import com.kevinchung.mdi_drawable.MdiDrawable
+
 
 class DrawableAdapter(
         private val context: Context,
@@ -22,7 +22,7 @@ class DrawableAdapter(
 
     override fun onBindViewHolder(holder: DrawableViewHolder, position: Int) {
         if(position in configList.indices) {
-            holder.onBindView(configList[position])
+            holder.onBindView(context, configList[position])
         }
     }
 
@@ -32,16 +32,14 @@ class DrawableAdapter(
 
 }
 
-class DrawableViewHolder(private val view:View):RecyclerView.ViewHolder(view){
+class DrawableViewHolder(view:View):RecyclerView.ViewHolder(view){
 
     private var image: ImageView = view.findViewById(R.id.ivDrawable)
     private var desc: TextView = view.findViewById(R.id.tvDesc)
 
-    fun onBindView(config:MdiDrawableConfig) {
-        val builder = MdiDrawable(view.context)
-        builder.config = config
-        image.background = builder.create()
-        desc.text = config.showConfig()
+    fun onBindView(context:Context, config:MdiDrawableConfig) {
+        image.background = config.create(context)
+        desc.text = config.toString()
     }
 }
 

@@ -24,11 +24,11 @@ dependencies {
 
 #### Basic usage:
 
-Use the following code when you need an alert icon programmaticaly 
+Use the following code when you need an alert icon programmatically 
 ```kotlin
-imageview.background = MdiDrawable(context)
-     .stringId(R.string.mdi_alert_decagram)
-     .create()
+imageview.background = MdiDrawableConfig()
+    .stringId(R.string.mdi_alert_decagram)
+    .create(context)
 ```
 
 <img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot_1621901926.png' />
@@ -43,11 +43,9 @@ Or use MdiView class to create it in layout file.
             android:text="@string/mdi_calendar"
             android:textSize="40dp"
             android:padding="4dp"
-            app:bgColor = "@color/blue_grey_600"
-            app:useGradient="true"
             app:cornerRadius="6dp"
-            app:gradientStartColor="@color/blue_grey_600"
-            app:gradientEndColor="@color/blue_grey_100"
+            app:bgGradientStartColor="@color/blue_grey_600"
+            app:bgGradientEndColor="@color/blue_grey_100"
             app:gradientOrientation="rightLeft"
             app:strokeWidth="1dp"
             app:strokeColor="@color/black"
@@ -57,7 +55,7 @@ Or use MdiView class to create it in layout file.
 
 And put the drawable into an ImageView or to the any view which support background drawable.
 
-The icon string resource name could found in and add prefix *"mdi_"* and change dash *"-"* to underscope *"_"*
+The icon string resource name could found in and add prefix *"mdi_"* and change dash *"-"* to underscore *"_"*
 ![](https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot%20from%202021-05-25%2007-41-30.png)
 
 
@@ -81,11 +79,11 @@ imageview.background = MdiDrawable(context)
 
 This project also come with a demo app which show different drawable configurations. 
 
-<img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot_1622073781.png' />
+<img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot_20220602_142905.png' />
 
 And also provide UI allow you to create your own drawable.
 
-<img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot_1621818157.png' />
+<img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot_20220602_142905.png' />
 
 #### Update Library:
 

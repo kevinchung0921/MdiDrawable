@@ -1,12 +1,14 @@
 package com.kevinchung.mdi_drawable_demo
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kevinchung.mdi_drawable.MdiDrawableConfig
-import com.kevinchung.mdi_drawable.MdiDrawable
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -20,8 +22,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.toolbar))
-
+        setSupportActionBar(toolbar)
 
         EventBus.getDefault().register(this)
 
@@ -30,9 +31,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setFab() {
-        fab.setImageDrawable(MdiDrawable(this)
+        fab.setImageDrawable(MdiDrawableConfig()
             .stringId(R.string.mdi_plus)
-            .create())
+            .create(this))
 
         // show AddDialog for adding custom icon
         fab.setOnClickListener {
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         setDataList()
 
-        rvDrawables.layoutManager = LinearLayoutManager(this)
+        rvDrawables.layoutManager = GridLayoutManager(this,5)
         val adapter = DrawableAdapter(this, drawableList)
         rvDrawables.adapter = adapter
     }
@@ -61,42 +62,67 @@ class MainActivity : AppCompatActivity() {
     // create demo icons
     private fun setDataList() {
 
+        drawableList.add(
+            MdiDrawableConfig()
+                .stringId(R.string.mdi_account_circle_outline)
+                .iconColor(ContextCompat.getColor(this, R.color.blue_grey_400))
+        )
+
+        drawableList.add(
+            MdiDrawableConfig()
+                .stringId(R.string.mdi_apple_ios)
+                .iconGradientStartColor(ContextCompat.getColor(this, R.color.black))
+                .iconGradientEndColor(ContextCompat.getColor(this, R.color.grey_300))
+                .iconGradientOrientation(GradientDrawable.Orientation.LEFT_RIGHT)
+        )
+
+        drawableList.add(
+            MdiDrawableConfig()
+                .stringId(R.string.mdi_apps)
+                .iconColor(ContextCompat.getColor(this, R.color.blue_200))
+        )
+
+        drawableList.add(
+            MdiDrawableConfig()
+                .stringId(R.string.mdi_badge_account_horizontal)
+                .iconColor(ContextCompat.getColor(this, R.color.blue_800))
+        )
+
+        drawableList.add(
+            MdiDrawableConfig()
+                .size(120)
+                .stringId(R.string.mdi_airplane)
+                .iconColor(ContextCompat.getColor(this, R.color.blue_grey_800))
+        )
 
         drawableList.add(
                 MdiDrawableConfig(
-                        stringId = R.string.mdi_bullseye_arrow,
-                        iconColor = resources.getColor(R.color.red_300)
-                )
-        )
-        drawableList.add(
-                MdiDrawableConfig(
                         stringId = R.string.mdi_coffee,
-                        iconColor = resources.getColor(R.color.cyan_A700),
-                        shadowColor = resources.getColor(R.color.grey_600),
+                        iconColor = ContextCompat.getColor(this,R.color.cyan_A700),
+                        shadowColor = ContextCompat.getColor(this,R.color.grey_600),
                         shadowDx = 4f,
                         shadowDy = 4f,
                         shadowRadius = 8f
                 )
         )
         drawableList.add(
-                MdiDrawableConfig(
-                        stringId = R.string.mdi_collage,
-                        iconColor = resources.getColor(R.color.red_500)
-                )
+                MdiDrawableConfig()
+                    .stringId(R.string.mdi_collage)
+                    .iconColor(ContextCompat.getColor(this,R.color.red_900))
         )
 
         drawableList.add(
                 MdiDrawableConfig(
                         stringId = R.string.mdi_format_wrap_inline,
-                        iconColor = resources.getColor(R.color.deep_orange_A200)
+                        iconColor = ContextCompat.getColor(this,R.color.deep_orange_A200)
                 )
         )
 
         drawableList.add(
                 MdiDrawableConfig(
                         stringId = R.string.mdi_emoticon_sad,
-                        size = 36,
-                        iconColor = resources.getColor(R.color.green_900)
+                        size = 50,
+                        iconColor = ContextCompat.getColor(this,R.color.green_900)
                 )
         )
 
@@ -104,18 +130,18 @@ class MainActivity : AppCompatActivity() {
                 MdiDrawableConfig(
                         stringId = R.string.mdi_emoticon_happy,
                         size = 200,
-                        iconColor = resources.getColor(R.color.teal_300)
+                        iconColor = ContextCompat.getColor(this,R.color.teal_300)
                 )
         )
 
         drawableList.add(
                 MdiDrawableConfig(
                         stringId = R.string.mdi_car,
-                        enableBackground = true,
-                        strokeColor = resources.getColor(R.color.grey_900),
-                        backgroundColor = resources.getColor(R.color.blue_grey_600),
-                        iconColor = resources.getColor(R.color.green_900),
-                        shadowColor = resources.getColor(R.color.grey_200),
+                        strokeColor = ContextCompat.getColor(this,R.color.grey_900),
+                        backgroundColor = ContextCompat.getColor(this,R.color.blue_grey_600),
+                        iconColor = ContextCompat.getColor(this,R.color.green_900),
+                        shadowColor = ContextCompat.getColor(this,R.color.white),
+                        cornerRadius = 12,
                         shadowRadius = 1f,
                         shadowDy = 4f,
                         shadowDx = 4f
@@ -124,72 +150,65 @@ class MainActivity : AppCompatActivity() {
         drawableList.add(
                 MdiDrawableConfig(
                         stringId = R.string.mdi_card_account_details,
-                        enableBackground = true,
-                        strokeColor = resources.getColor(R.color.blue_grey_400),
-                        strokeWidth = 6,
+                        strokeColor = ContextCompat.getColor(this,R.color.blue_grey_400),
+                        strokeWidth = 3,
                         cornerRadius = 6,
                         padding = 6,
-                        iconColor = resources.getColor(R.color.brown_500)
+                        iconColor = ContextCompat.getColor(this,R.color.brown_500)
                 )
         )
 
         drawableList.add(
                 MdiDrawableConfig(
                         stringId = R.string.mdi_devices,
-                        enableBackground = true,
-                        strokeColor = resources.getColor(R.color.purple_300),
+                        strokeColor = ContextCompat.getColor(this,R.color.purple_300),
                         strokeWidth = 8,
                         strokeDashGap = 5f,
                         cornerRadius = 6,
                         padding = 12,
-                        iconColor = resources.getColor(R.color.deep_orange_400)
+                        iconColor = ContextCompat.getColor(this,R.color.deep_orange_400)
                 )
         )
 
         drawableList.add(
                 MdiDrawableConfig(
                         stringId = R.string.mdi_chart_bar_stacked,
-                        enableBackground = true,
                         cornerRadius = 6,
                         iconColor = Color.WHITE,
-                        enableGradient = true,
-                        gradientStartColor = Color.LTGRAY,
-                        gradientEndColor = Color.DKGRAY
+                        bgGradientStartColor = Color.LTGRAY,
+                        bgGradientEndColor = Color.DKGRAY
                 )
         )
 
         drawableList.add(
                 MdiDrawableConfig(
                         stringId = R.string.mdi_check_decagram,
-                        enableBackground = true,
                         cornerRadius = 100,
                         iconColor = Color.WHITE,
-                        backgroundColor = resources.getColor(R.color.green_800),
+                        padding = 12,
+                        backgroundColor = ContextCompat.getColor(this,R.color.green_800),
                 )
         )
 
         drawableList.add(
                 MdiDrawableConfig(
                         stringId = R.string.mdi_checkerboard,
-                        enableBackground = true,
                         cornerRadius = 100,
-                        padding = 8,
+                        padding = 12,
                         iconColor = Color.WHITE,
-                        enableGradient = true,
-                        gradientStartColor = resources.getColor(R.color.light_blue_900),
-                        gradientEndColor = resources.getColor(R.color.light_blue_100),
-                        gradientOrientation = GradientDrawable.Orientation.TL_BR
+                        bgGradientStartColor = ContextCompat.getColor(this,R.color.light_blue_900),
+                        bgGradientEndColor = ContextCompat.getColor(this,R.color.light_blue_100),
+                        bgGradientOrientation = GradientDrawable.Orientation.TL_BR
                 )
         )
 
         drawableList.add(
                 MdiDrawableConfig(
                         stringId = R.string.mdi_desktop_mac,
-                        enableBackground = true,
                         cornerRadius = 30,
                         padding = 16,
-                        iconColor = resources.getColor(R.color.joyful_2),
-                        backgroundColor = resources.getColor(R.color.joyful_1)
+                        iconColor = ContextCompat.getColor(this,R.color.joyful_2),
+                        backgroundColor = ContextCompat.getColor(this,R.color.joyful_3)
                 )
         )
     }

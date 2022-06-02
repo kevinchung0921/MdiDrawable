@@ -9,7 +9,6 @@ import android.view.View
 import android.widget.ArrayAdapter
 import com.github.dhaval2404.colorpicker.ColorPickerDialog
 import com.kevinchung.mdi_drawable.MdiDrawableConfig
-import com.kevinchung.mdi_drawable.MdiDrawable
 import kotlinx.android.synthetic.main.dialog.*
 import org.greenrobot.eventbus.EventBus
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText
@@ -17,7 +16,7 @@ import studio.carbonylgroup.textfieldboxes.ExtendedEditText
 class AddDialog(context:Context): Dialog(context) {
 
     companion object {
-        private val TAG = "AddDialog"
+        private const val TAG = "AddDialog"
     }
 
     private val drawableConfig = MdiDrawableConfig()
@@ -27,12 +26,6 @@ class AddDialog(context:Context): Dialog(context) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog)
 
-        switchBackground.setOnCheckedChangeListener { _, isChecked ->
-            layoutBackground.visibility = if(isChecked) View.VISIBLE else View.GONE
-            drawableConfig.enableBackground = isChecked
-            drawableConfig.enableGradient = true
-            updateIcon()
-        }
 
         setEdits()
 
@@ -92,7 +85,7 @@ class AddDialog(context:Context): Dialog(context) {
 
         editBgColorStart.setSimpleTextChangeWatcher { theNewText, _ ->
             try {
-                drawableConfig.gradientStartColor = theNewText.toLong(radix = 16).toInt()
+                drawableConfig.bgGradientStartColor = theNewText.toLong(radix = 16).toInt()
                 updateIcon()
             } catch(e:Exception){}
         }
@@ -108,23 +101,20 @@ class AddDialog(context:Context): Dialog(context) {
 
         editBgColorEnd.setSimpleTextChangeWatcher { theNewText, _ ->
             try {
-                drawableConfig.gradientEndColor = theNewText.toLong(radix = 16).toInt()
+                drawableConfig.bgGradientEndColor = theNewText.toLong(radix = 16).toInt()
                 updateIcon()
             } catch(e:Exception){}
         }
 
         editName.setSimpleTextChangeWatcher { theNewText, _ ->
             try {
-                val builder = MdiDrawable(context)
 
                 val id = context.resources.getIdentifier("mdi_$theNewText", "string", context.packageName)
-
-                builder.config = drawableConfig
 
                 if(id > 0) {
                     drawableConfig.stringId = id
                     updateIcon()
-                } else null
+                }
             } catch(e:Exception){}
         }
 
@@ -163,6 +153,6 @@ class AddDialog(context:Context): Dialog(context) {
 
 
     private fun updateIcon() {
-        ivDrawable.background = MdiDrawable(context, drawableConfig).create()
+        ivDrawable.background = drawableConfig.create(context)
     }
 }

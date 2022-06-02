@@ -20,36 +20,98 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-<<<<<<< HEAD
-    <include layout="@layout/content_main" />
-=======
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:gravity="center_horizontal"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/mdi"
-            android:textSize="60dp"
-            android:text="&#xF08C9;"
-            android:visibility="gone"
+            android:text="By XML"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:layout_margin="8dp"
             />
-        <com.kevinchung.mdi_drawable.MdiView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.kevinchung.mdi_drawable.MdiView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mdi_android"
+                android:textSize="40dp"
+                android:layout_margin="6dp"
+                android:textColor="@color/green_300"
+                />
+            <com.kevinchung.mdi_drawable.MdiView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mdi_content_copy"
+                android:textSize="30dp"
+                android:layout_margin="6dp"
+                android:textColor="@color/brown_500"
+                android:shadowRadius="4"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowColor="@color/grey_400"
+                />
+            <com.kevinchung.mdi_drawable.MdiView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mdi_calendar"
+                android:textSize="40dp"
+                android:layout_margin="6dp"
+                app:iconGradientStartColor="@color/pink_600"
+                app:iconGradientEndColor="@color/orange_200"
+                />
+            <com.kevinchung.mdi_drawable.MdiView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:text="@string/mdi_account_box"
+                android:textSize="38dp"
+                android:padding="4dp"
+                app:cornerRadius="8dp"
+                app:bgGradientStartColor="@color/blue_300"
+                app:bgGradientEndColor="@color/blue_grey_100"
+                app:bgGradientOrientation="rightLeft"
+                app:iconGradientStartColor="@color/blue_300"
+                app:iconGradientEndColor="@color/pink_300"
+                app:iconGradientOrientation="bl_tr"
+                android:textColor="@color/white"
+                />
+            <com.kevinchung.mdi_drawable.MdiView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mdi_web"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                android:layout_margin="6dp"
+                app:bgColor="@color/deep_orange_300"
+                app:cornerRadius="30dp"
+                android:padding="10dp"
+                />
+            <com.kevinchung.mdi_drawable.MdiView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mdi_fishbowl_outline"
+                android:textColor="@color/grey_500"
+                android:textSize="30dp"
+                android:layout_margin="6dp"
+                app:cornerRadius="10dp"
+                android:padding="10dp"
+                app:strokeColor="@color/grey_500"
+                app:strokeWidth="1dp"
+
+                />
+        </LinearLayout>
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/mdi_calendar"
-            android:textSize="40dp"
-            android:padding="4dp"
-            app:bgColor = "@color/blue_grey_600"
-            app:useGradient="true"
-            app:cornerRadius="6dp"
-            app:gradientStartColor="@color/blue_grey_600"
-            app:gradientEndColor="@color/blue_grey_100"
-            app:gradientOrientation="rightLeft"
-            app:strokeWidth="1dp"
-            app:strokeColor="@color/black"
+            android:text="By Program"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:layout_margin="8dp"
             />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvDrawables"
@@ -58,7 +120,7 @@
             android:layout_height="match_parent"/>
 
     </LinearLayout>
->>>>>>> main
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -66,10 +128,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-<<<<<<< HEAD
-        app:srcCompat="@android:drawable/ic_dialog_email" />
-=======
         />
->>>>>>> main
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
