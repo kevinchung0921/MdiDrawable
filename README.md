@@ -18,7 +18,7 @@ allprojects {
 ```
 ```groovy
 dependencies {
-    implementation 'com.github.kevinchung0921:MdiDrawable:0.1.1'
+    implementation 'com.github.kevinchung0921:MdiDrawable:0.1.3'
 }
 ```
 
