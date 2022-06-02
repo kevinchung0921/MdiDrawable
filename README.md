@@ -26,9 +26,9 @@ dependencies {
 
 Use the following code when you need an alert icon programmaticaly 
 ```kotlin
-imageview.background = MdiDrawable(context)
+imageview.background = MdiDrawableConfig()
      .stringId(R.string.mdi_alert_decagram)
-     .create()
+     .create(context)
 ```
 
 <img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot_1621901926.png' />
@@ -64,7 +64,7 @@ The icon string resource name could found in and add prefix *"mdi_"* and change 
 #### More settings:
 
 ``` kotlin
-imageview.background = MdiDrawable(context)
+imageview.background = MdiDrawableConfig()
     .stringId(R.string.mdi_android)
     .size(60)
     .radius(60)
@@ -73,7 +73,7 @@ imageview.background = MdiDrawable(context)
     .useGradient(Color.DKGRAY, Color.LTGRAY)
     .stroke(width=2, color.BLACK, length=10, gap=2)
     .shadow(color=Color.BLACK, radius=4, dx=10, dy=10)
-    .create()
+    .create(context)
 ```
 
 
@@ -81,11 +81,11 @@ imageview.background = MdiDrawable(context)
 
 This project also come with a demo app which show different drawable configurations. 
 
-<img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot_1622073781.png' />
+<img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot_20220602_142905.png' />
 
-And also provide UI allow you to create your own drawable.
+And also provide a dialog allow you to create drawable at runtime.
 
-<img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot_1621818157.png' />
+<img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot_20220602_143319.png' />
 
 #### Update Library:
 
