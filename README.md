@@ -31,7 +31,7 @@ imageview.background = MdiDrawableConfig()
      .create(context)
 ```
 
-<img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot_1621901926.png' />
+<img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/master/images/Screenshot_1621901926.png' />
 
 
 Or use MdiView class to create it in layout file.
@@ -58,7 +58,7 @@ Or use MdiView class to create it in layout file.
 And put the drawable into an ImageView or to the any view which support background drawable.
 
 The icon string resource name could found in and add prefix *"mdi_"* and change dash *"-"* to underscope *"_"*
-![](https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot%20from%202021-05-25%2007-41-30.png)
+![](https://github.com/kevinchung0921/MdiDrawable/blob/master/images/Screenshot%20from%202021-05-25%2007-41-30.png)
 
 
 #### More settings:
@@ -81,11 +81,11 @@ imageview.background = MdiDrawableConfig()
 
 This project also come with a demo app which show different drawable configurations. 
 
-<img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot_20220602_142905.png' />
+<img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/master/images/Screenshot_20220602_142905.png' />
 
 And also provide a dialog allow you to create drawable at runtime.
 
-<img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/main/images/Screenshot_20220602_143319.png' />
+<img width='300' src='https://github.com/kevinchung0921/MdiDrawable/blob/master/images/Screenshot_20220602_143319.png' />
 
 #### Update Library:
 
